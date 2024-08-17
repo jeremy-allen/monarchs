@@ -45,7 +45,7 @@ get_monarch_data <- function() {
 
 dat <- get_monarch_data()
 available_months <- unique(dat$Month)
-print(available_months)
+
 
 # Enable thematic
 thematic::thematic_shiny(font = "auto")
