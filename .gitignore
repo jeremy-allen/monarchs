@@ -2,4 +2,7 @@
 .Rhistory
 .RData
 .Ruserdata
-.posit/
+.posit/publish/
+*.toml
+.DS_Store
+.DS_Store?
