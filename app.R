@@ -77,9 +77,10 @@ ui <- page_fillable(
         "Refresh Map"
     ),
       br(),
-      tags$p("Data source: ", 
-           tags$a("Journey North", href = "https://journeynorth.org/", target = "_blank")),
-      tags$p(tags$a("app code by Jeremy Allen", href = ""))     
+      tags$p("Data source: ", tags$a("Journey North", href = "https://journeynorth.org/", target = "_blank")),
+      tags$p(tags$a("App by Jeremy Allen", href = "https://github.com/jeremy-allen/monarchs.git")),
+      tags$p(tags$a("Powered by Shiny for R", href = "https://shiny.posit.co/"))
+         
     ),
     card(
       full_screen = TRUE,
