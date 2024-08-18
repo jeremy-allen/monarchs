@@ -82,6 +82,10 @@ ui <- page_fillable(
         "Refresh Map"
       ),
       br(),
+      textOutput("above_33"),
+      br(),
+      textOutput("east_94"),
+      br(),
       tags$p("Data source: ", tags$a("Journey North", href = "https://journeynorth.org/", target = "_blank")),
       tags$p(tags$a("App by Jeremy Allen", href = "https://github.com/jeremy-allen/monarchs.git")),
       tags$p(tags$a("Powered by Shiny for R", href = "https://shiny.posit.co/"))
@@ -120,6 +124,34 @@ server <- function(input, output, session) {
   }) |> 
     bindEvent(input$go, ignoreNULL = FALSE)
 
+  above_33 <- reactive({
+    count <- filtered_data() %>%
+      filter(Latitude > 33) |> 
+      nrow()
+
+    prop <- (count/nrow(filtered_data()))*100
+
+    return(prop)
+  })
+
+  east_94 <- reactive({
+    count <- filtered_data() %>%
+      filter(Longitude > -94.0) |> 
+      nrow()
+
+    prop <- (count/nrow(filtered_data()))*100
+
+    return(prop)
+  })
+
+  output$above_33 <- renderText({
+    paste0(round(above_33(), 2), "% of these sightings are north of 33°N")
+  })
+  
+  output$east_94 <- renderText({
+    paste0(round(east_94(), 2), "% of these sightings are east of -94°E")
+  })
+
   # Render the data table
   output$table <- renderReactable({
     reactable(filtered_data(),
@@ -149,13 +181,29 @@ server <- function(input, output, session) {
     ord <- factor(levels(data$Month), levels = levels(data$Month), ordered = TRUE)
 
     leaflet(data) %>%
-      addProviderTiles(providers$CartoDB.DarkMatter) %>%  # Use dark map tiles
+      addProviderTiles(providers$CartoDB.DarkMatter) %>%
+      addPolylines(
+        lng = c(-94.0, -94.0),
+        lat = c(-90, 90),
+        stroke = TRUE,
+        color = "#82cae8",
+        weight = 2,
+        opacity = 0.3) |> 
+      addPolylines(
+        lng = c(0, -360),
+        lat = c(33, 33),
+        stroke = TRUE,
+        color = "#82cae8",
+        weight = 2,
+        opacity = 0.3) |> 
       addCircleMarkers(
         ~Longitude, ~Latitude,
         radius = ~sqrt(Count) * 2,  # Adjust the multiplier for better visibility
         popup = ~paste("Date:", Date, "<br>",
                         "Month:", Month, "<br>",
                        "Location:", City, ", ", State, "<br>",
+                       "Latitude:", Latitude, "<br>",
+                       "Longitude:", Longitude, "<br>",
                        "Count:", Count),
         label = ~as.character(Count),
         color = ~month_palette(Month),
