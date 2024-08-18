@@ -2,6 +2,7 @@
 
 # Load required libraries
 library(shiny)
+library(reactable)
 library(leaflet)
 library(dplyr)
 library(lubridate)
@@ -53,12 +54,16 @@ thematic::thematic_shiny(font = "auto")
 # UI
 ui <- page_fillable(
   theme = bs_theme(
-    bootswatch = "morph",
+    bootswatch = "zephyr",
     primary = "#ee561f",
-    secondary = "#000000",
-    base_font = font_google("Inter")
-  ) |> 
-    bs_add_rules(sass::sass_file("www/cards.scss")),
+    secondary = "#82cae8",
+    base_font = font_google("Lato"),
+    input_btn_padding_x = ".25rem",
+    input_btn_padding_y =  ".25rem",
+    card_cap_padding_x = "2",
+    card_cap_padding_y = "2",
+    nav_tabs_link_active_color = "#ee561f"
+  ),
   layout_sidebar(
     sidebar = sidebar(
       h5("2024 Adult Monarch Butterfly Sightings"),
@@ -75,16 +80,26 @@ ui <- page_fillable(
       actionButton(
         "go",
         "Refresh Map"
-    ),
+      ),
       br(),
       tags$p("Data source: ", tags$a("Journey North", href = "https://journeynorth.org/", target = "_blank")),
       tags$p(tags$a("App by Jeremy Allen", href = "https://github.com/jeremy-allen/monarchs.git")),
       tags$p(tags$a("Powered by Shiny for R", href = "https://shiny.posit.co/"))
          
     ),
-    card(
-      full_screen = TRUE,
-      leafletOutput("map")
+    navset_card_tab(
+      nav_panel("Map",
+        card_body(
+          class = "p-0",
+          leafletOutput("map")
+        )
+      ),
+      nav_panel("Data",
+        card_body(
+          reactableOutput("table")
+        )
+      ),
+      full_screen = TRUE
     )
   )
 )
@@ -104,6 +119,14 @@ server <- function(input, output, session) {
       )
   }) |> 
     bindEvent(input$go, ignoreNULL = FALSE)
+
+  # Render the data table
+  output$table <- renderReactable({
+    reactable(filtered_data(),
+    filterable = TRUE,
+    defaultPageSize = 12,
+    minRows = 12,)
+  })
   
   # Render the map
   output$map <- renderLeaflet({
