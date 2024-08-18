@@ -6,4 +6,4 @@ Data from [Journey North](https://journeynorth.org/)
 
 App by Jeremy Allen
 
-![](https://github.com/jeremy-allen/monarchs/blob/3ab95e8de9a32116170c314d7889e45f6fa3ae24/monarchs.png)
+![](https://github.com/jeremy-allen/monarchs/blob/b752aa5f105d29e9f5dcc4dd3ac1199106cf92af/monarchs-app-screenshot.png)
