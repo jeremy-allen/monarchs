@@ -71,11 +71,7 @@ ui <- page_fillable(
         "months",
         NULL,
         choices = month.abb,
-        selected = if (length(available_months) >= 3) {
-          available_months[1:3]
-        } else {
-          available_months[1]
-        }
+        selected = c(first(available_months), last(available_months))
       ),
       actionButton(
         "go",
