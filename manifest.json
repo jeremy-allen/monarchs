@@ -1683,37 +1683,6 @@
         "Built": "R 4.4.0; ; 2024-04-25 06:04:08 UTC; unix"
       }
     },
-    "renv": {
-      "Source": "PPM",
-      "Repository": "https://packagemanager.posit.co/cran/latest",
-      "description": {
-        "Package": "renv",
-        "Type": "Package",
-        "Title": "Project Environments",
-        "Version": "1.0.7",
-        "Authors@R": "c(\n    person(\"Kevin\", \"Ushey\", role = c(\"aut\", \"cre\"), email = \"kevin@rstudio.com\",\n           comment = c(ORCID = \"0000-0003-2880-7407\")),\n    person(\"Hadley\", \"Wickham\", role = c(\"aut\"), email = \"hadley@rstudio.com\",\n           comment = c(ORCID = \"0000-0003-4757-117X\")),\n    person(\"Posit Software, PBC\", role = c(\"cph\", \"fnd\"))\n    )",
-        "Description": "A dependency management toolkit for R. Using 'renv', you can create\n    and manage project-local R libraries, save the state of these libraries to\n    a 'lockfile', and later restore your library as required. Together, these\n    tools can help make your projects more isolated, portable, and reproducible.",
-        "License": "MIT + file LICENSE",
-        "URL": "https://rstudio.github.io/renv/, https://github.com/rstudio/renv",
-        "BugReports": "https://github.com/rstudio/renv/issues",
-        "Imports": "utils",
-        "Suggests": "BiocManager, cli, covr, cpp11, devtools, gitcreds, jsonlite,\nknitr, miniUI, packrat, pak, R6, remotes, reticulate,\nrmarkdown, rstudioapi, shiny, testthat, uuid, waldo, yaml,\nwebfakes",
-        "Encoding": "UTF-8",
-        "RoxygenNote": "7.3.1",
-        "VignetteBuilder": "knitr",
-        "Config/Needs/website": "tidyverse/tidytemplate",
-        "Config/testthat/edition": "3",
-        "Config/testthat/parallel": "true",
-        "Config/testthat/start-first": "bioconductor,python,install,restore,snapshot,retrieve,remotes",
-        "NeedsCompilation": "no",
-        "Packaged": "2024-04-11 16:26:24 UTC; kevin",
-        "Author": "Kevin Ushey [aut, cre] (<https://orcid.org/0000-0003-2880-7407>),\n  Hadley Wickham [aut] (<https://orcid.org/0000-0003-4757-117X>),\n  Posit Software, PBC [cph, fnd]",
-        "Maintainer": "Kevin Ushey <kevin@rstudio.com>",
-        "Repository": "RSPM",
-        "Date/Publication": "2024-04-11 22:20:02 UTC",
-        "Built": "R 4.4.0; ; 2024-04-25 05:47:33 UTC; unix"
-      }
-    },
     "rlang": {
       "Source": "PPM",
       "Repository": "https://packagemanager.posit.co/cran/latest",
@@ -2115,7 +2084,7 @@
       }
     },
     "thematic": {
-      "Source": "CRAN",
+      "Source": "PPM",
       "Repository": "https://packagemanager.posit.co/cran/latest",
       "description": {
         "Package": "thematic",
@@ -2485,26 +2454,8 @@
     }
   },
   "files": {
-    ".posit/publish/configuration-1.toml": {
-      "checksum": "312d40e67129fe83ce59acd6b7354d5a"
-    },
-    ".posit/publish/deployments/deployment-1.toml": {
-      "checksum": "23e3dc3da146b1313185f50e370cd9a3"
-    },
-    ".Rprofile": {
-      "checksum": "19ffebd5b5bc6e1edc76d249c27d513b"
-    },
     "app.R": {
       "checksum": "f284cc86e100c9e6e151ba1be4a8bb45"
-    },
-    "monarchs-app-screenshot.png": {
-      "checksum": "4bf1d46063b6875e99b332eb86fb3017"
-    },
-    "README.md": {
-      "checksum": "8ca12a8c7902c85ee6888e40ab728d14"
-    },
-    "renv.lock": {
-      "checksum": "9bef1b6c7a342f5777e1c96cacc043f3"
     }
   },
   "users": null
